@@ -2,25 +2,25 @@
 # 配置菜单导航的名称、路径和图标icon.
 menu:
   Index:
-    url: /https://kevin2329.github.io/
+    url: https://kevin2329.github.io/
     icon: fas fa-home
   Tags:
-    url: /tags
+    url: https://kevin2329.github.io/
     icon: fas fa-tags
   Categories:
-    url: /categories
+    url: https://kevin2329.github.io/
     icon: fas fa-bookmark
   Archives:
-    url: /archives
+    url: https://kevin2329.github.io/
     icon: fas fa-archive
   About:
-    url: /about
+    url: https://kevin2329.github.io/
     icon: fas fa-user-circle
   Contact:
-    url: /contact
+    url: https://kevin2329.github.io/
     icon: fas fa-comments
   Friends:
-    url: /friends
+    url: https://kevin2329.github.io/
     icon: fas fa-address-book
   # 二级菜单写法如下
   #Medias:
