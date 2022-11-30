@@ -6,7 +6,7 @@ email: huxpro@gmail.com
 description: ""
 keyword: ""
 url: "https://kevin2329.github.io/index.html"              # your host, for absolute URL
-baseurl: "https://kevin2329.github.io/index.html/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
