@@ -7,11 +7,13 @@ comments: true
 author: Kevin
 ---
 
----
-
-今天正在用单例模式写一个背包系统。简要代码如下：
+- 今天正在用单例模式写一个背包系统。简要代码如下：
 
 <!-- more -->
+
+
+
+
 
 ```C#
 public class BagManager:MonoBehaviour
