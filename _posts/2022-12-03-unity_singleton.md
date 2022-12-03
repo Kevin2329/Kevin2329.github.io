@@ -2,7 +2,7 @@
 layout: post
 title: "在Unity中使用单例模式出现的问题"
 date:   2022-12-03
-tags: [Unity][Design Patterns][C#]
+tags: [Unity,DesignPattern,C#]
 comments: true
 author: Kevin
 ---
@@ -15,7 +15,7 @@ author: Kevin
 
 
 
-```C#
+```csharp
 public class BagManager:MonoBehaviour
 {
     public GameObject GridParent;
@@ -34,7 +34,7 @@ public class BagManager:MonoBehaviour
 当我在别处调用BagManager.Instance时，发现GridParent为null。调试了许久之后，我明白了。
 此单例类BagManager挂载在场景的物体上，随着Play mode的进入，__BagManager已经被初始化，但是此时instance仍然为null__。外部调用BagManager.Instance时，根据以上代码，会再次new一个BagManager(),所以原本绑定的public变量GridParent就失效了。改成以下代码即可
 
-```C#
+```csharp
 public class BagManager : MonoBehaviour
 {
     public GameObject GridParent;
@@ -53,7 +53,7 @@ public class BagManager : MonoBehaviour
     }
 ```
 因为该脚本挂载在物体上，在游戏开始时就会被初始化，所以只要在awake里让_instance等于自身就好了，代码中不用出现"new"这个关键词了。为了使得该代码更加健壮，将构造函数设置为private,放置在外部new。set也设置为private，防止在外部设置该值。
-```C#
+```csharp
 public class BagManager : MonoBehaviour
 {
     public GameObject GridParent;
