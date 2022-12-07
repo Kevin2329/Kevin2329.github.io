@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DIY视频</title>
+</head>
+
+<body>
+    <figure style="text-align: center">
+        <div class="a">
+            <style>
+                .a {
+                    width: 100%;
+                    margin: 0 auto;
+                    position: fixed
+                }
+            </style>
+            <div class="b">
+                <img id="img" src="./go.png" onclick="playVideo()"> </img>
+                <style>
+                    .b img {
+                        max-width: 260px;
+                        max-height: 260px;
+                        position: relative;
+                        top: 433.5px;
+                        left: -120px;
+                        z-index: 999;
+                    }
+                </style>
+            </div>
+            <div class="c">
+                <video id="video" src="./video.mp4" style="width: 500px;">
+                    <span>您的浏览器不支持video标签，请换个浏览器试一下吧</span>
+                </video>
+                <style>
+                    .c {
+                        width: 100%;
+                        top: 0px;
+                        height: 500px;
+                        margin: 0 auto;
+                        position: relative;
+                    }
+                </style>
+
+            </div>
+        </div>
+
+
+    </figure>
+</body>
+
+<script type="text/javascript">
+    //播放
+    var myVideo = document.getElementById("video");  //获取的id应该为视频的id，不能直接用btn_play
+    function playVideo() {
+        myVideo.play();
+        document.getElementById("img").outerHTML = '';
+
+    }
+
+</script>
+
+</html>
