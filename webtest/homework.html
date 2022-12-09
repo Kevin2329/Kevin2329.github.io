@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .box {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .video {
+        width: 100%;
+        /* display: none; */
+      }
+      #video1 {
+        display: block;
+      }
+      #video2,
+      #video3,
+      #video4,
+      #video5,
+      #video6 {
+        display: none;
+      }
+      .img {
+        position: absolute;
+      }
+      .img .imgBox {
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+      .start,
+      .controls1,
+      .controls2,
+      .controls3,
+      .controls4 {
+        height: 100%;
+        width: 100%;
+      }
+      .controls1,
+      .controls2,
+      .lose1,
+      .lose2 {
+        display: none;
+      }
+
+      .img img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .img .startBtn {
+        width: 230px;
+        height: 70px;
+        position: absolute;
+        bottom: 35px;
+        left: calc(50% - 115px);
+      }
+      .img .skiptBtn {
+        width: 230px;
+        height: 70px;
+        position: absolute;
+        bottom: 15px;
+        left: calc(50% - 115px);
+        display: none;
+      }
+
+      .controls1-1,
+      .controls2-1 {
+        display: none;
+        position: absolute;
+        width: 190px;
+        height: 80px;
+        top: 270px;
+        left: 10px;
+      }
+      .controls1-2,
+      .controls2-2 {
+        display: none;
+        position: absolute;
+        width: 190px;
+        height: 80px;
+        top: 270px;
+        right: 10px;
+      }
+
+      .restart1,
+      .restart2 {
+        display: none;
+        position: absolute;
+        width: 230px;
+        height: 80px;
+        bottom: 35px;
+        left: calc(50% - 115px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <video id="video1" class="video" src="./finish(1)/finish/1.mp4"></video>
+      <video id="video2" class="video" src="./finish(1)/finish/2.mp4"></video>
+      <video id="video3" class="video" src="./finish(1)/finish/3.mp4"></video>
+      <video id="video4" class="video" src="./finish(1)/finish/4.mp4"></video>
+      <video
+        id="video5"
+        class="video"
+        src="./finish(1)/finish/lose1.mp4"></video>
+      <video
+        id="video6"
+        class="video"
+        src="./finish(1)/finish/lose2.mp4"></video>
+      <div class="img">
+        <div class="imgBox">
+          <div class="start">
+            <img src="./image/image/win0002.jpg" alt="" />
+            <div class="startBtn"></div>
+          </div>
+
+          <div class="skip">
+            <div class="skiptBtn">
+              <img src="./image/image/tiaoguo.png" alt="" />
+            </div>
+          </div>
+
+          <div class="controls1">
+            <img src="./image/image/2.jpg" alt="" />
+            <div class="controls1-1"></div>
+            <div class="controls1-2"></div>
+          </div>
+
+          <div class="lose1">
+            <div class="restart1"></div>
+          </div>
+
+          <div class="controls2">
+            <img src="./image/image/3.jpg" alt="" />
+            <div class="controls2-1"></div>
+            <div class="controls2-2"></div>
+          </div>
+
+          <div class="lose2">
+            <div class="restart2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 适配
+      const box = document.getElementsByClassName('box')[0];
+      const video1 = document.getElementById('video1');
+      const video2 = document.getElementById('video2');
+      const video3 = document.getElementById('video3');
+      const video4 = document.getElementById('video4');
+      const video5 = document.getElementById('video5');
+      const video6 = document.getElementById('video6');
+      let width = video1.clientWidth;
+      let height = Math.floor(video1.clientWidth / (525 / 930));
+      if (height > box.clientHeight) {
+        height = box.clientHeight;
+        video1.style.width = Math.floor((525 / 930) * height) + 'px';
+      }
+      video1.style.height = height + 'px';
+
+      // 开始游戏
+      const img = document.getElementsByClassName('img')[0];
+      img.style.width = Math.floor(video1.clientWidth) + 'px';
+      img.style.height = Math.floor(video1.clientHeight) + 'px';
+
+      const start = document.getElementsByClassName('start')[0];
+
+      const startBtn = document.getElementsByClassName('startBtn')[0];
+
+      const skiptBtn = document.getElementsByClassName('skiptBtn')[0];
+      startBtn.addEventListener('click', function () {
+        start.style.display = 'none';
+        startBtn.style.display = 'none';
+        skiptBtn.style.display = 'block';
+        video1.play();
+      });
+
+      // 跳过
+      skiptBtn.addEventListener('click', () => {
+        img.style.display = 'none';
+        skiptBtn.style.display = 'none';
+        video1.pause();
+        video1.style.display = 'none';
+        video2.style.display = 'block';
+        video2.play();
+      });
+
+      video1.addEventListener('ended', () => {
+        video1.style.display = 'none';
+        video2.style.display = 'block';
+        video2.play();
+      });
+
+      // 选择
+      const controls1 = document.getElementsByClassName('controls1')[0];
+      const controls11 = document.getElementsByClassName('controls1-1')[0];
+      const controls12 = document.getElementsByClassName('controls1-2')[0];
+
+      video2.addEventListener('ended', () => {
+        video2.style.display = 'none';
+        img.style.display = 'block';
+        controls1.style.display = 'block';
+        controls11.style.display = 'block';
+        controls12.style.display = 'block';
+      });
+
+      // 失败
+      controls11.addEventListener('click', () => {
+        img.style.display = 'none';
+        controls1.style.display = 'none';
+        controls11.style.display = 'none';
+        controls12.style.display = 'none';
+        video5.style.display = 'block';
+        video5.play();
+      });
+
+      const lose1 = document.getElementsByClassName('lose1')[0];
+      const restart1 = document.getElementsByClassName('restart1')[0];
+      video5.addEventListener('ended', () => {
+        img.style.display = 'block';
+        lose1.style.display = 'block';
+        restart1.style.display = 'block';
+      });
+
+      restart1.addEventListener('click', () => {
+        img.style.display = 'none';
+        lose1.style.display = 'none';
+        restart1.style.display = 'none';
+        video5.style.display = 'none';
+        video2.style.display = 'block';
+        video2.play();
+      });
+
+      // 继续游戏
+      controls12.addEventListener('click', () => {
+        img.style.display = 'none';
+        controls1.style.display = 'none';
+        controls11.style.display = 'none';
+        controls12.style.display = 'none';
+        video3.style.display = 'block';
+        video3.play();
+      });
+
+      // 选择
+      const controls2 = document.getElementsByClassName('controls2')[0];
+      const controls21 = document.getElementsByClassName('controls2-1')[0];
+      const controls22 = document.getElementsByClassName('controls2-2')[0];
+
+      video3.addEventListener('ended', () => {
+        video3.style.display = 'none';
+        img.style.display = 'block';
+        controls2.style.display = 'block';
+        controls21.style.display = 'block';
+        controls22.style.display = 'block';
+      });
+
+      controls21.addEventListener('click', () => {
+        img.style.display = 'none';
+        controls2.style.display = 'none';
+        controls21.style.display = 'none';
+        controls22.style.display = 'none';
+        video6.style.display = 'block';
+        video6.play();
+      });
+
+      const lose2 = document.getElementsByClassName('lose2')[0];
+      const restart2 = document.getElementsByClassName('restart2')[0];
+      video6.addEventListener('ended', () => {
+        img.style.display = 'block';
+        lose2.style.display = 'block';
+        restart2.style.display = 'block';
+      });
+
+      restart2.addEventListener('click', () => {
+        img.style.display = 'none';
+        video6.style.display = 'none';
+        video2.style.display = 'block';
+        video2.play();
+      });
+
+      controls22.addEventListener('click', () => {
+        img.style.display = 'none';
+        controls2.style.display = 'none';
+        controls21.style.display = 'none';
+        controls22.style.display = 'none';
+        video4.style.display = 'block';
+        video4.play();
+      });
+    </script>
+  </body>
+</html>
